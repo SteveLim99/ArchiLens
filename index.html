@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>ContractContent</h1>
+
+        <h2 id="content"></h2>
+
+        <div class ="row-lg-2">
+            <label for="name" class="col-lg-2 control-label">Contract Title</label>
+            <input id="title" type="text">
+        
+            <label for="name" class="col-lg-2 control-label">Main Content</label>
+            <input id="content" type="text">
+        
+            <label for="name" class="col-lg-2 control-label">Date</label>
+            <input id="date" type="text">
+        
+            <label for="name" class="col-lg-2 control-label">Version</label>
+            <input id="version" type="text">
+        
+            <button id="update">Upload Contract</button> 
+        </div>
+        
+        
+    </div>
+    
+	<script>
+	const Web3 = require('web3');
+	if (typeof web3 !== 'undefined') {
+		// Mist, Metamask
+		web3 = new Web3(web3.currentProvider);
+	} else {
+		// set the provider you want from Web3.providers
+		web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+		console.log("connected");
+	}
+	web3.eth.defaultAccount = web3.eth.accounts[0];
+	var ConstructionContract = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_contractTitle",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_contractContent",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_contractDate",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_contractVersion",
+				"type": "uint256"
+			}
+		],
+		"name": "createContracts",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "contracts",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "content",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "date",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "contractToUploader",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_contractId",
+				"type": "uint256"
+			}
+		],
+		"name": "getUploader",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+])
+    
+    var Construction = ConstructionContract.at('0x2e35fa1f369e0E1B920Ab4000D93B5CC600362d3');
+	console.log(Construction); 
+	</script>
+</body>
+</html>
