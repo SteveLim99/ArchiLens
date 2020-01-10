@@ -35,7 +35,7 @@ After ganache is launched, enter the client directory and install the local depe
 
 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
 
-<------------------------------------------------------------------------------------------------------------------------------------>
+<----------------------------------------------------------------------------------------------------------------------------------->
 
 TODO List:
 1. Fetch Section for Frontend Website (Urgent)
