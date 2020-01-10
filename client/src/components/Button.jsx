@@ -3,9 +3,11 @@ import React, { Component } from "react";
 const Button = props => {
   console.log(props.style);
   return (
-    <button style={props.style} onClick={props.action}>
-      {props.title}
-    </button>
+    <div class="form-group">
+      <button style={props.style} class={props.class} onClick={props.action}>
+        {props.title}
+      </button>
+    </div>
   );
 };
 

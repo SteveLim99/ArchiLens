@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import "bootstrap/dist/css/bootstrap.css";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
@@ -98,45 +99,49 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div className="App">
-        <div className="col-md-6">
-          <h3> Forms </h3>
-          <TextBox
-            inputType={"int"}
-            title={"Insert File Name"}
-            name={"fileName"}
-            value={this.state.fileName}
-            placeholder={"Enter File Name"}
-            handleChange={this.handleName}
-          />
-          <TextBox
-            inputType={"text"}
-            title={"Insert File Version"}
-            name={"value"}
-            value={this.state.value}
-            placeholder={"Enter File Version"}
-            handleChange={this.handleInput}
-          />
-          <TextArea
-            title={"File Content"}
-            rows={10}
-            value={this.state.content}
-            name={"currentFileInfo"}
-            handleChange={this.handleContent}
-            placeholder={"File Key Contents and Highlights"}
-          />
-          <Button
-            action={this.handleFormSubmit}
-            type={"primary"}
-            title={"Submit"}
-            style={{ marginRight: 1 + "em" }}
-          />
-          <Button
-            action={this.handleClearForm}
-            type={"secondary"}
-            title={"Clear"}
-            style={{ marginRight: 1 + "em" }}
-          />
+      // <div className="App">
+      <div class="container contact-form">
+        <h1> Create new File </h1>
+        <div class="row">
+          <div class="col-md-6">
+            <TextBox
+              inputType={"int"}
+              title={"Insert File Name"}
+              name={"fileName"}
+              value={this.state.fileName}
+              placeholder={"Enter File Name"}
+              handleChange={this.handleName}
+            />
+            <TextBox
+              inputType={"text"}
+              title={"Insert File Version"}
+              name={"value"}
+              value={this.state.value}
+              placeholder={"Enter File Version"}
+              handleChange={this.handleInput}
+            />
+            <Button
+              action={this.handleFormSubmit}
+              class={"btnSubmit"}
+              title={"Submit"}
+              style={{ marginRight: 1 + "em" }}
+            />
+            <Button
+              action={this.handleClearForm}
+              class={"btnClear"}
+              title={"Clear"}
+              style={{ marginRight: 1 + "em" }}
+            />
+          </div>
+          <div class="col-md-6">
+            <TextArea
+              title={"File Content"}
+              value={this.state.content}
+              name={"currentFileInfo"}
+              handleChange={this.handleContent}
+              placeholder={"File Key Contents and Highlights"}
+            />
+          </div>
         </div>
       </div>
     );

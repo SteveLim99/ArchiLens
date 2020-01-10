@@ -1,22 +1,56 @@
 .App {
+  margin-left: auto;
+  border-radius: 25px;
+  margin-right: auto;
+  width: 50%;
+  background-color: burlywood;
+  padding: 100px;
+}
+
+body {
+  background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+}
+
+.contact-form {
+  background: #fff;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  width: 70%;
+  padding: 5%;
+}
+
+.contact-form h1 {
+  margin-bottom: 8%;
+  margin-top: -10%;
   text-align: center;
+  color: #0062cc;
 }
 
-.App-logo {
-  height: 40vmin;
+.contact-form .row {
+  margin-bottom: -7%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.contact-form .form-control {
+  border-radius: 1rem;
 }
 
-.App-link {
-  color: #09d3ac;
+.contact-form .btnClear {
+  width: 50%;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5%;
+  background: #dc3545;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact-form .btnSubmit {
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  color: #fff;
+  background-color: #0062cc;
+  border: none;
+  cursor: pointer;
 }

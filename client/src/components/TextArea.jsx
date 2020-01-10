@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 
 const TextArea = props => (
-  <div className="form-group">
-    <label className="form-label">{props.title}</label>
+  // {/* <label className="form-label">{props.title}</label> */}
+  <div class="form-group">
     <textarea
-      className="form-control"
+      class="form-control"
       name={props.name}
-      rows={props.rows}
-      cols={props.cols}
+      rows={8}
       value={props.value}
       onChange={props.handleChange}
       placeholder={props.placeholder}
