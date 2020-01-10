@@ -51,16 +51,23 @@ class App extends Component {
     const { accounts, contract, value, fileName, content } = this.state;
 
     // Stores the given value.
-    await contract.methods
-      .set(value, fileName, content)
-      .send({ from: accounts[0] });
-
+    if (fileName == "" || content == "" || value == "") {
+      alert("Fields cannot be left empty!");
+    } else {
+      await contract.methods
+        .set(value, fileName, content)
+        .send({ from: accounts[0] });
+      // Update state with the result.
+      this.setState({ latestVersion: value });
+      this.setState({
+        value: "",
+        content: "",
+        fileName: ""
+      });
+    }
     //TODO: IMPLEMENT GET METHODS
     // Get the value from the contract to prove it worked.
     // const response = await contract.methods.get().call();
-
-    // Update state with the result.
-    this.setState({ latestVersion: value });
   };
 
   //Handles version input
@@ -90,7 +97,9 @@ class App extends Component {
   handleClearForm = e => {
     e.preventDefault();
     this.setState({
-      value: ""
+      value: "",
+      content: "",
+      fileName: ""
     });
   };
 
