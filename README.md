@@ -19,6 +19,8 @@ In order to run the testing env, you would need:
   
  4.Installing Solidity extension on vsCode
   -Solidity by Juan Blanco
+  
+<----------------------------------------------------------------------------------------------------------------------------------->
  
 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle 
 "truffle migrate --reset --network develop"
@@ -32,3 +34,12 @@ After ganache is launched, enter the client directory and install the local depe
 "npm start"
 
 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
+
+<----------------------------------------------------------------------------------------------------------------------------------->
+
+TODO List:
+1. Fetch Section for Frontend Website (Urgent)
+2. Connect Frontend to Unity (Urgent)
+3. Store models on the blockchain (Urgent)
+4. Fix Metamask bug (Urgent)
+5. Connect blockchain frontend to report website (optional)
