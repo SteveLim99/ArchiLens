@@ -1,16 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useCallback } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import "bootstrap/dist/css/bootstrap.css";
+import "react-router-dom";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
 import TextBox from "./components/TextBox.jsx";
 import Button from "./components/Button.jsx";
 import TextArea from "./components/TextArea.jsx";
+import { Nav, Tab } from "react-bootstrap";
 
 class App extends Component {
   state = {
     latestVersion: 0,
+    getVersion: "",
+    getValue: "",
     fileName: "",
     value: "",
     content: "",
@@ -54,20 +58,40 @@ class App extends Component {
     if (fileName == "" || content == "" || value == "") {
       alert("Fields cannot be left empty!");
     } else {
-      await contract.methods
-        .set(value, fileName, content)
-        .send({ from: accounts[0] });
-      // Update state with the result.
-      this.setState({ latestVersion: value });
-      this.setState({
-        value: "",
-        content: "",
-        fileName: ""
-      });
+      try {
+        await contract.methods
+          .set(value, fileName, content)
+          .send({ from: accounts[0] });
+        // Update state with the result.
+        this.setState({ latestVersion: value });
+        this.setState({
+          value: "",
+          content: "",
+          fileName: ""
+        });
+      } catch (error) {
+        alert("Error");
+      }
     }
     //TODO: IMPLEMENT GET METHODS
     // Get the value from the contract to prove it worked.
     // const response = await contract.methods.get().call();
+  };
+
+  handleVersionInput = async e => {
+    const { contract, address } = this.state;
+    const val = e.target.value;
+    this.setState({ getVersion: val });
+    if (contract == null || address == null) {
+      alert("Not Connected");
+    } else {
+      if (val == "") {
+        alert("Fields cannot be left empty");
+      } else {
+        const response = await contract.methods.get(val).call();
+        this.setState({ getValue: response });
+      }
+    }
   };
 
   //Handles version input
@@ -91,7 +115,6 @@ class App extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     this.submitForm();
-    console.log("pushed");
   };
 
   handleClearForm = e => {
@@ -108,50 +131,74 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      // <div className="App">
-      <div class="container contact-form">
-        <h1> Create new File </h1>
-        <div class="row">
-          <div class="col-md-6">
-            <TextBox
-              inputType={"int"}
-              title={"Insert File Name"}
-              name={"fileName"}
-              value={this.state.fileName}
-              placeholder={"Enter File Name"}
-              handleChange={this.handleName}
-            />
-            <TextBox
-              inputType={"text"}
-              title={"Insert File Version"}
-              name={"value"}
-              value={this.state.value}
-              placeholder={"Enter File Version"}
-              handleChange={this.handleInput}
-            />
-            <Button
-              action={this.handleFormSubmit}
-              class={"btnSubmit"}
-              title={"Submit"}
-              style={{ marginRight: 1 + "em" }}
-            />
-            <Button
-              action={this.handleClearForm}
-              class={"btnClear"}
-              title={"Clear"}
-              style={{ marginRight: 1 + "em" }}
-            />
-          </div>
-          <div class="col-md-6">
-            <TextArea
-              title={"File Content"}
-              value={this.state.content}
-              name={"currentFileInfo"}
-              handleChange={this.handleContent}
-              placeholder={"File Key Contents and Highlights"}
-            />
-          </div>
-        </div>
+      <div className="contact-form">
+        <Tab.Container defaultActiveKey="home">
+          <Nav defaultActiveKey="/home" justify variant="tabs" as="ul">
+            <Nav.Item as="li">
+              <Nav.Link eventKey="home">Submit</Nav.Link>
+            </Nav.Item>
+            <Nav.Item as="li">
+              <Nav.Link eventKey="profile">Retrieve</Nav.Link>
+            </Nav.Item>
+          </Nav>
+
+          <Tab.Content defaultActiveKey="home">
+            <Tab.Pane eventKey="home">
+              <h1 className="title"> Create new File </h1>
+              <TextBox
+                inputType={"int"}
+                title={"Insert File Name"}
+                name={"fileName"}
+                value={this.state.fileName}
+                placeholder={"Enter File Name"}
+                handleChange={this.handleName}
+              />
+              <TextBox
+                inputType={"text"}
+                title={"Insert File Version"}
+                name={"value"}
+                value={this.state.value}
+                placeholder={"Enter File Version"}
+                handleChange={this.handleInput}
+              />
+              <TextArea
+                title={"File Content"}
+                value={this.state.content}
+                name={"currentFileInfo"}
+                handleChange={this.handleContent}
+                placeholder={"File Key Contents and Highlights"}
+              />
+              <div>
+                <Button
+                  action={this.handleFormSubmit}
+                  class={"btnSubmit"}
+                  title={"Submit"}
+                />
+                <Button
+                  action={this.handleClearForm}
+                  class={"btnClear"}
+                  title={"Clear"}
+                />
+              </div>
+            </Tab.Pane>
+            <Tab.Pane eventKey="profile">
+              <h1 className="title"> Retrieve File </h1>
+              <TextBox
+                inputType={"text"}
+                title={"Insert File Version"}
+                name={"value"}
+                value={this.state.getVersion}
+                placeholder={"Enter File Version"}
+                handleChange={this.handleVersionInput}
+              />
+              <Button
+                action={this.handleFormSubmit}
+                class={"btnSubmit"}
+                title={"Submit"}
+              />
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
       </div>
     );
   }

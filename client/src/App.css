@@ -13,25 +13,48 @@ body {
 
 .contact-form {
   background: #fff;
-  margin-top: 10%;
-  margin-bottom: 5%;
-  width: 70%;
+  margin: 0 auto;
+  width: 800px;
   padding: 5%;
 }
 
-.contact-form h1 {
-  margin-bottom: 8%;
-  margin-top: -10%;
+.contact-form .nav-tabs {
+  margin-bottom: 1%;
+  background: #0062cc;
+  border-radius: 1rem;
+}
+.contact-form .nav-link {
+  padding: 2%;
+  height: 34px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.contact-form .nav-tabs .nav-link.active {
+  color: #0062cc;
+  border: 2px solid #0062cc;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.title {
   text-align: center;
   color: #0062cc;
 }
 
-.contact-form .row {
-  margin-bottom: -7%;
-}
-
 .contact-form .form-control {
   border-radius: 1rem;
+}
+
+.contact-form .row {
+  flex: 0.9;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  display: inline-block;
 }
 
 .contact-form .btnClear {
