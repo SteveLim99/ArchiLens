@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Button = props => {
   console.log(props.style);
   return (
-    <div class="form-group">
-      <button style={props.style} class={props.class} onClick={props.action}>
-        {props.title}
-      </button>
-    </div>
+    <button style={props.style} class={props.class} onClick={props.action}>
+      {props.title}
+    </button>
   );
 };
 

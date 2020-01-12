@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const TextArea = props => (
   // {/* <label className="form-label">{props.title}</label> */}

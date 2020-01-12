@@ -60,7 +60,8 @@ body {
 .contact-form .btnClear {
   width: 50%;
   border: none;
-  border-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   padding: 1.5%;
   background: #dc3545;
   font-weight: 600;
@@ -70,7 +71,8 @@ body {
 
 .contact-form .btnSubmit {
   width: 50%;
-  border-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   padding: 1.5%;
   color: #fff;
   background-color: #0062cc;

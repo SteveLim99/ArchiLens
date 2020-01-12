@@ -1,4 +1,4 @@
-import React, { Component, useCallback } from "react";
+import React, { Component } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-router-dom";
@@ -55,7 +55,7 @@ class App extends Component {
     const { accounts, contract, value, fileName, content } = this.state;
 
     // Stores the given value.
-    if (fileName == "" || content == "" || value == "") {
+    if (fileName === "" || content === "" || value === "") {
       alert("Fields cannot be left empty!");
     } else {
       try {
@@ -82,10 +82,10 @@ class App extends Component {
     const { contract, address } = this.state;
     const val = e.target.value;
     this.setState({ getVersion: val });
-    if (contract == null || address == null) {
+    if (contract === null || address === null) {
       alert("Not Connected");
     } else {
-      if (val == "") {
+      if (val === "") {
         alert("Fields cannot be left empty");
       } else {
         const response = await contract.methods.get(val).call();
