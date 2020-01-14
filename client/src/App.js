@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     latestVersion: 0,
     getVersion: "",
-    getValue: "",
+    returnValue: "",
     fileName: "",
     value: "",
     content: "",
@@ -63,41 +63,47 @@ class App extends Component {
           .set(value, fileName, content)
           .send({ from: accounts[0] });
         // Update state with the result.
-        this.setState({ latestVersion: value });
         this.setState({
           value: "",
           content: "",
           fileName: ""
         });
       } catch (error) {
-        alert("Error");
+        alert("Submission: " + error);
       }
     }
     //TODO: IMPLEMENT GET METHODS
     // Get the value from the contract to prove it worked.
-    // const response = await contract.methods.get().call();
+    const response = await contract.methods.getLatestVersion().call();
+    this.setState({ latestVersion: response });
   };
 
-  handleVersionInput = async e => {
-    const { contract, address } = this.state;
-    const val = e.target.value;
-    this.setState({ getVersion: val });
-    if (contract === null || address === null) {
-      alert("Not Connected");
-    } else {
-      if (val === "") {
-        alert("Fields cannot be left empty");
-      } else {
-        const response = await contract.methods.get(val).call();
-        this.setState({ getValue: response });
-      }
-    }
-  };
+  // handleVersionSubmit = async e => {
+  //   const { contract, address } = this.state;
+  //   const val = this.state.getVersion;
+  //   if (contract === null || address === null) {
+  //     alert("Not Connected");
+  //   } else {
+  //     try {
+  //       const response = await contract.methods.get(val).call();
+  //       // this.setState({ returnValue: response });
+  //       alert(response);
+  //     } catch (error) {
+  //       console.log("Call: Could not retrieve data");
+  //     }
+  //   }
+  // };
 
   //Handles version input
   handleInput = e => {
     let val = e.target.value;
     this.setState({ value: val });
+  };
+
+  //Handles getVersion input
+  handleInputGet = e => {
+    let val = e.target.value;
+    this.setState({ getVersion: val });
   };
 
   //Handles file name input
@@ -115,6 +121,11 @@ class App extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     this.submitForm();
+    this.setState({
+      value: "",
+      content: "",
+      fileName: ""
+    });
   };
 
   handleClearForm = e => {
@@ -147,7 +158,6 @@ class App extends Component {
               <h1 className="title"> Create new File </h1>
               <TextBox
                 inputType={"int"}
-                title={"Insert File Name"}
                 name={"fileName"}
                 value={this.state.fileName}
                 placeholder={"Enter File Name"}
@@ -155,12 +165,12 @@ class App extends Component {
               />
               <TextBox
                 inputType={"text"}
-                title={"Insert File Version"}
                 name={"value"}
                 value={this.state.value}
                 placeholder={"Enter File Version"}
                 handleChange={this.handleInput}
               />
+              <p>latest version: {this.state.latestVersion}</p>
               <TextArea
                 title={"File Content"}
                 value={this.state.content}
@@ -185,17 +195,18 @@ class App extends Component {
               <h1 className="title"> Retrieve File </h1>
               <TextBox
                 inputType={"text"}
-                title={"Insert File Version"}
-                name={"value"}
+                name={"getValue"}
                 value={this.state.getVersion}
                 placeholder={"Enter File Version"}
-                handleChange={this.handleVersionInput}
+                handleChange={this.handleInputGet}
               />
               <Button
-                action={this.handleFormSubmit}
+                // action={this.handleVersionSubmit}
                 class={"btnSubmit"}
                 title={"Submit"}
               />
+              {/* <p>Get Version is: {this.state.getVersion}</p>
+              <p>The File Name is: {this.state.returnValue}</p> */}
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>

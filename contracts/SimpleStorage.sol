@@ -1,6 +1,7 @@
 pragma solidity >=0.4.21 <0.7.0;
 
 contract SimpleStorage {
+  uint latestVersion;
   struct File{
     uint fileVersion;
     string fileName;
@@ -12,10 +13,11 @@ contract SimpleStorage {
   mapping (uint => string) public versionToName;
 
   function set(uint _version, string memory _name, string memory _content) public {
+    latestVersion = _version;
     files.push(File(_version,_name,_content));
   }
 
-  function get(uint _version) public view returns (string memory) {
-    return versionToName[_version];
+  function getLatestVersion() public view returns (uint) {
+    return latestVersion;
   }
 }
