@@ -13,8 +13,8 @@ import { Nav, Tab } from "react-bootstrap";
 class App extends Component {
   state = {
     latestVersion: 0,
-    getVersion: "",
-    returnValue: "",
+    getVersion: 0,
+    owner: "",
     fileName: "",
     value: "",
     content: "",
@@ -74,25 +74,22 @@ class App extends Component {
     }
     //TODO: IMPLEMENT GET METHODS
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.getLatestVersion().call();
-    this.setState({ latestVersion: response });
+    // const response = await contract.methods.getLatestVersion().call();
+    // this.setState({ latestVersion: response });
   };
 
-  // handleVersionSubmit = async e => {
-  //   const { contract, address } = this.state;
-  //   const val = this.state.getVersion;
-  //   if (contract === null || address === null) {
-  //     alert("Not Connected");
-  //   } else {
-  //     try {
-  //       const response = await contract.methods.get(val).call();
-  //       // this.setState({ returnValue: response });
-  //       alert(response);
-  //     } catch (error) {
-  //       console.log("Call: Could not retrieve data");
-  //     }
-  //   }
-  // };
+  handleVersionSubmit = async e => {
+    e.preventDefault();
+    const contract = this.state.contract;
+    const val = this.state.getVersion;
+    try {
+      const response = await contract.methods.getOwner(val).call();
+      this.setState({ owner: response });
+      alert(response);
+    } catch (error) {
+      console.log("Call: " + error);
+    }
+  };
 
   //Handles version input
   handleInput = e => {
@@ -170,7 +167,6 @@ class App extends Component {
                 placeholder={"Enter File Version"}
                 handleChange={this.handleInput}
               />
-              <p>latest version: {this.state.latestVersion}</p>
               <TextArea
                 title={"File Content"}
                 value={this.state.content}
@@ -201,12 +197,12 @@ class App extends Component {
                 handleChange={this.handleInputGet}
               />
               <Button
-                // action={this.handleVersionSubmit}
+                action={this.handleVersionSubmit}
                 class={"btnSubmit"}
                 title={"Submit"}
               />
-              {/* <p>Get Version is: {this.state.getVersion}</p>
-              <p>The File Name is: {this.state.returnValue}</p> */}
+              <p>Get Version is: {this.state.getVersion}</p>
+              <p>The File Name is: {this.state.owner}</p>
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
