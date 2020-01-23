@@ -72,20 +72,17 @@ class App extends Component {
         alert("Submission: " + error);
       }
     }
-    //TODO: IMPLEMENT GET METHODS
-    // Get the value from the contract to prove it worked.
-    // const response = await contract.methods.getLatestVersion().call();
-    // this.setState({ latestVersion: response });
   };
 
+  //TODO: IMPLEMENT GET METHODS
   handleVersionSubmit = async e => {
     e.preventDefault();
     const contract = this.state.contract;
     const val = this.state.getVersion;
     try {
       const response = await contract.methods.getOwner(val).call();
+      console.log(response)
       this.setState({ owner: response });
-      alert(response);
     } catch (error) {
       console.log("Call: " + error);
     }
@@ -201,8 +198,7 @@ class App extends Component {
                 class={"btnSubmit"}
                 title={"Submit"}
               />
-              <p>Get Version is: {this.state.getVersion}</p>
-              <p>The File Name is: {this.state.owner}</p>
+              <p>The Owner's Address is: {this.state.owner}</p>
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
