@@ -21,14 +21,14 @@ In order to run the testing env, you would need:
   
 <----------------------------------------------------------------------------------------------------------------------------------->
 # 2 Setting up
-# 2.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 2.2.
+2.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 2.2.
 "truffle migrate --reset --network ropsten"
 
-# 2.2 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.
+2.2 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.
 cd client 
 npm i 
 
-# 2.3 Launch React App from the same directory 
+2.3 Launch React App from the same directory 
 npm start 
 
-# 2.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
+2.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
