@@ -20,7 +20,6 @@ In order to run the testing env, you would need:
 2.4 Installing Solidity extension on vsCode  
 - Solidity by Juan Blanco  
   
-<----------------------------------------------------------------------------------------------------------------------------------->
 # 3 Setting up  
 3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 2.2.  
 - "truffle migrate --reset --network ropsten"  
