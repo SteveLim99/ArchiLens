@@ -13,7 +13,7 @@ module.exports = {
       port: 8545,
       network_id: "*"
     },
-    live: {
+    ropsten: {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
@@ -21,6 +21,16 @@ module.exports = {
         );
       },
       network_id: 3
+    },
+    azure: {
+      provider: function() {
+        return new HDWalletProvider(
+          mnemonic,
+          "https://uclaccessnode.blockchain.azure.com:3200/xUN39ABW74fPhrjH-aCSoktC"
+        );
+      },
+      network_id: "*",
+      gasPrice: 0
     }
   }
 };
