@@ -21,7 +21,7 @@ In order to run the testing env, you would need:
 - Solidity by Juan Blanco  
   
 # 3 Setting up  
-3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 2.2.  
+3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
 - "truffle migrate --reset --network ropsten"  
 
 3.2 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.  
@@ -32,3 +32,13 @@ In order to run the testing env, you would need:
 - npm start    
 
 3.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
+
+# 4 Unity Application 
+4.1 Install Unity APK 
+
+4.2 Open "Archi-Lens" applications, please have a 5 pounds or 10 pounds note on standby as we utilized it as an object anchor.
+
+4.3 Point your camera towards the dollar bill and click "Toggle Model". 
+
+4.4 A 3D Model should be placed on the dollar bill. 
+- If not, refer to the Prototype tab on our website.
