@@ -1,45 +1,34 @@
 # UCL_Blockchain_AR
-
+# 1 Technologies Required
 In order to run the testing env, you would need:
 1. node.js and npm
-2. truffle and ganache 
-3. metamask 
-4. Solidity extension on VS code
+2. Metamask Extension 
+3. Solidity extension on VS code
+4. Truffle
 
 1. Installing node.js 
   -"sudo apt-get install nodejs"
   -"npm install npm@latest -g"
 
-2. Installing truffle and ganache 
+2. Installing truffle 
   -"npm i -g truffle"
-  -"npm i -g ganache-cli"
   
  3.Installing metamask
-  -Metamask can be found as an extension in google chrome.
+  -Metamask can be found as an extension in google chrome, Mozilla etc.
   
  4.Installing Solidity extension on vsCode
   -Solidity by Juan Blanco
   
 <----------------------------------------------------------------------------------------------------------------------------------->
- 
-If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle 
-"truffle migrate --reset --network develop"
+# 2 Setting up
+# 2.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 2.2.
+"truffle migrate --reset --network ropsten"
 
-For testing, get seed phrase from metamask and launch ganache using seed phrase. This allows ganache to connect to metamask, and input ETH into the metamask acc.
-"ganache-cli -m "<SEED_PHRASE>"
+# 2.2 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.
+cd client 
+npm i 
 
-After ganache is launched, enter the client directory and install the local dependancies and packages. Then start the express server.
-"cd client"
-"npm install" 
-"npm start"
+# 2.3 Launch React App from the same directory 
+npm start 
 
-React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
-
-<----------------------------------------------------------------------------------------------------------------------------------->
-
-TODO List:
-1. Fetch Section for Frontend Website (Urgent)
-2. Connect Frontend to Unity (Urgent)
-3. Store models on the blockchain (Urgent)
-4. Fix Metamask bug (Urgent)
-5. Connect blockchain frontend to report website (optional)
+# 2.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js
