@@ -28,7 +28,7 @@ In order to run the testing env, you would need:
 - cd client  
 - npm start
 
-3.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
+3.3 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
 
 # 4 Unity Application 
 4.1 Install Unity APK 
