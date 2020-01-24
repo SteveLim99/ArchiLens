@@ -25,7 +25,7 @@ In order to run the testing env, you would need:
 - npm install @truffle/hdwallet-provider
 
 3.2 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
-- "truffle migrate --reset --network ropsten"  
+- "truffle migrate --reset --network live"  
 
 3.3 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.  
 - cd client  
