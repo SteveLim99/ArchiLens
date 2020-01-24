@@ -21,20 +21,14 @@ In order to run the testing env, you would need:
 - Solidity by Juan Blanco  
   
 # 3 Setting up  
-3.1 Install HDWalletProvider
-- npm install @truffle/hdwallet-provider
-
-3.2 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
+3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
 - "truffle migrate --reset --network live"  
 
-3.3 Install dependancies and packages, channge directory to "client" and carry out installation of packages found in node_modules.  
+3.2 Install dependancies and packages, channge directory to "client" and launch React App from the same directory.  
 - cd client  
-- npm i  
+- npm start
 
-3.4 Launch React App from the same directory   
-- npm start    
-
-3.5 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
+3.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
 
 # 4 Unity Application 
 4.1 Install Unity APK 
