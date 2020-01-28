@@ -24,11 +24,15 @@ In order to run the testing env, you would need:
 3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
 - "truffle migrate --reset --network live"  
 
-3.2 Install dependancies and packages, channge directory to "client" and launch React App from the same directory.  
-- cd client  
+3.2 Install HD-Wallet-Provider
+- npm install @truffle/hdwallet-provider
+
+3.3 Install dependancies and packages, channge directory to "client" and launch React App from the same directory.  
+- cd client
+- npm install 
 - npm start
 
-3.3 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
+3.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
 
 # 4 Unity Application 
 4.1 Install Unity APK 
