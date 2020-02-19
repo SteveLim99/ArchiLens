@@ -11,17 +11,27 @@ import TextArea from "./components/TextArea.jsx";
 import { Nav, Tab } from "react-bootstrap";
 
 class App extends Component {
-  state = {
-    latestVersion: 0,
-    getVersion: 0,
-    owner: "",
-    fileName: "",
-    value: "",
-    content: "",
-    web3: null,
-    accounts: null,
-    contract: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      latestVersion: 0,
+      getVersion: 0,
+      owner: "",
+      fileName: "",
+      value: "",
+      content: "",
+      apiResponse: "",
+      web3: null,
+      accounts: null,
+      contract: null
+    };
+  }
+
+  callAPI() {
+    fetch("http://localhost:3001/test")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }));
+  }
 
   componentDidMount = async () => {
     try {
@@ -41,6 +51,7 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
+      this.callAPI();
       this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -81,7 +92,7 @@ class App extends Component {
     const val = this.state.getVersion;
     try {
       const response = await contract.methods.getOwner(val).call();
-      console.log(response)
+      console.log(response);
       this.setState({ owner: response });
     } catch (error) {
       console.log("Call: " + error);
@@ -202,6 +213,7 @@ class App extends Component {
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
+        <p>Api Test : {this.state.apiResponse}</p>
       </div>
     );
   }

@@ -13,7 +13,7 @@ module.exports = {
       port: 8545,
       network_id: "*"
     },
-    ropsten: {
+    live: {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
@@ -26,7 +26,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
-          "https://uclaccessnode.blockchain.azure.com:3200/xUN39ABW74fPhrjH-aCSoktC"
+          "https://uclaccess.blockchain.azure.com:3200/Kqvd-rrVG7m3KPPA66usrIJu"
         );
       },
       network_id: "*",
