@@ -1,6 +1,6 @@
-const uri = "https://hashandfileurls.documents.azure.com:443/";
+const uri = "<Your Connection String>";
 const key =
-  "740UvcbsOr8pJxaX6cc7uKOikY800TYiBGebI7vQ9gJfTbHXb2bzfJly9Wd7bwIdjWHaDRAUAwmMJ5Iv15CFfQ==";
+  "<Your Access Key>";
 
 module.exports = {
   uri,
