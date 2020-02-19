@@ -1,0 +1,27 @@
+{
+  "name": "bchain_frontend",
+  "version": "1.0.0",
+  "description": "In order to run the testing env, you would need:   1. node.js and npm   2. Metamask Extension   3. Solidity extension on VS code   4. Truffle",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteveLim99/UCL_Blockchain_AR.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteveLim99/UCL_Blockchain_AR/issues"
+  },
+  "homepage": "https://github.com/SteveLim99/UCL_Blockchain_AR#readme"
+}

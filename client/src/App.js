@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:3001/test")
+    fetch("http://localhost:9000/testApi")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
@@ -213,7 +213,7 @@ class App extends Component {
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
-        <p>Api Test : {this.state.apiResponse}</p>
+        <p>{this.state.apiResponse}</p>
       </div>
     );
   }
