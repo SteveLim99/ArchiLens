@@ -39,7 +39,7 @@ router.post("/", uploadStrategy, (req, res) => {
       }
 
       res.render("success", {
-        message: "File uploaded to Azure Blob storage."
+        message: "nani"
       });
     }
   );

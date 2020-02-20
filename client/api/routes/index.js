@@ -8,6 +8,7 @@ const express = require("express"),
   blobService = azureStorage.createBlobService(),
   containerName = "file-3d",
   config = require("../config");
+var filterName = "";
 router.get("/", (req, res, next) => {
   blobService.listBlobsSegmented(containerName, null, (err, data) => {
     let viewData;
@@ -33,7 +34,17 @@ router.get("/", (req, res, next) => {
         viewData.thumbnails = data.entries;
       }
     }
-    res.send(viewData.thumbnails);
+
+    if (filterName == "") {
+      console.log(viewData.thumbnails);
+    } else {
+      for (var blob of data.entries) {
+        if (blob["name"] == filterName) {
+          console.log(blob);
+          console.log("go home");
+        }
+      }
+    }
   });
 });
 
