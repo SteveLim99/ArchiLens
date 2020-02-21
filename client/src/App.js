@@ -20,18 +20,18 @@ class App extends Component {
       fileName: "",
       value: "",
       content: "",
-      apiResponse: "",
+      // apiResponse: "",
       web3: null,
       accounts: null,
       contract: null
     };
   }
 
-  callAPI() {
-    fetch("http://localhost:9000/testApi")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
+  // callAPI() {
+  //   fetch("http://localhost:9000/testApi")
+  //     .then(res => res.text())
+  //     .then(res => this.setState({ apiResponse: res }));
+  // }
 
   componentDidMount = async () => {
     try {
@@ -51,7 +51,7 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.callAPI();
+      // this.callAPI();
       this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -182,6 +182,16 @@ class App extends Component {
                 handleChange={this.handleContent}
                 placeholder={"File Key Contents and Highlights"}
               />
+              <form
+                id="upload-form"
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="upload-container">
+                  <input id="file-picker" type="file" name="image"></input>
+                </div>
+              </form>
               <div>
                 <Button
                   action={this.handleFormSubmit}
@@ -197,23 +207,45 @@ class App extends Component {
             </Tab.Pane>
             <Tab.Pane eventKey="profile">
               <h1 className="title"> Retrieve File </h1>
-              <TextBox
-                inputType={"text"}
-                name={"getValue"}
-                value={this.state.getVersion}
-                placeholder={"Enter File Version"}
-                handleChange={this.handleInputGet}
-              />
-              <Button
-                action={this.handleVersionSubmit}
-                class={"btnSubmit"}
-                title={"Submit"}
-              />
-              <p>The Owner's Address is: {this.state.owner}</p>
+              <form class="form">
+                <p className="mb-1">Refine your results</p>
+                <div style={{ marginBottom: "5px" }}>
+                  <div style={{ float: "left", width: "30%" }}>
+                    <label htmlFor="price-from">File Version</label>
+                    <input
+                      className="form-input"
+                      min="0"
+                      max="10000000"
+                      type="number"
+                      id="price-from"
+                      placeholder="0.0.0"
+                    />
+                  </div>
+                  <div style={{ float: "left", width: "30%" }}>
+                    <label htmlFor="postcode">File Type</label>
+                    <select className="form-select" id="postcode">
+                      <option value="">Choose...</option>
+                    </select>
+                  </div>
+                  <div style={{ float: "right" }}>
+                    <label htmlFor="sortorder">File Name</label>
+                    <input></input>
+                  </div>
+                </div>
+                <Button
+                  action={this.handleFormSubmit}
+                  class={"filterBtn"}
+                  title={"Filter"}
+                />
+                <Button
+                  action={this.handleClearForm}
+                  class={"searchBtn"}
+                  title={"Search"}
+                />
+              </form>
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
-        <p>{this.state.apiResponse}</p>
       </div>
     );
   }

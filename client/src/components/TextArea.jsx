@@ -6,7 +6,7 @@ const TextArea = props => (
     <textarea
       class="form-control"
       name={props.name}
-      rows={8}
+      rows={4}
       value={props.value}
       onChange={props.handleChange}
       placeholder={props.placeholder}

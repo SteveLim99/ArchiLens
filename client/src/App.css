@@ -11,6 +11,21 @@ body {
   background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
 }
 
+.file-submit {
+  border: grey;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.upload-container {
+  margin-bottom: 10px;
+}
+
 .contact-form {
   background: #fff;
   margin: 0 auto;
@@ -49,6 +64,13 @@ body {
   border-radius: 1rem;
 }
 
+.contact-form .form-control-speshiul {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 70%;
+  float: left;
+}
+
 .contact-form .row {
   flex: 0.9;
   flex-direction: row;
@@ -78,4 +100,36 @@ body {
   background-color: #0062cc;
   border: none;
   cursor: pointer;
+}
+
+.filterBtn {
+  width: 10%;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  color: #fff;
+  background-color: #0062cc;
+  border: none;
+  cursor: pointer;
+}
+
+.searchBtn {
+  width: 10%;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
+  padding: 30px;
+  background-color: #f7f8f9;
+  border-radius: 0.2rem;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.container {
+  padding: 0;
 }
