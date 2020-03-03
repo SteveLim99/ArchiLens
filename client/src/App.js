@@ -20,18 +20,23 @@ class App extends Component {
       fileName: "",
       value: "",
       content: "",
-      // apiResponse: "",
+      apiResponse: "",
       web3: null,
       accounts: null,
       contract: null
     };
   }
 
-  // callAPI() {
-  //   fetch("http://localhost:9000/testApi")
-  //     .then(res => res.text())
-  //     .then(res => this.setState({ apiResponse: res }));
-  // }
+  callAPI() {
+    fetch("http://localhost:9000/testApi")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }))
+      .catch(err => err);
+  }
+
+  componentWillMount() {
+    this.callAPI();
+  }
 
   componentDidMount = async () => {
     try {
@@ -51,7 +56,7 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      // this.callAPI();
+      this.callAPI();
       this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -242,6 +247,7 @@ class App extends Component {
                   class={"searchBtn"}
                   title={"Search"}
                 />
+                <p>here : {this.state.apiResponse}</p>
               </form>
             </Tab.Pane>
           </Tab.Content>

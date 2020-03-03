@@ -1,4 +1,7 @@
 node_modules
 package-lock.json
+
+#API 
+api/node_modules
+
 #Secret 
-env/environment.js
