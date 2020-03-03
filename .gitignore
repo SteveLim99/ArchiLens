@@ -5,3 +5,4 @@ package-lock.json
 api/node_modules
 
 #Secret 
+client/api/.env
