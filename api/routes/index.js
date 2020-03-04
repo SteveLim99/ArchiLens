@@ -11,6 +11,7 @@ const express = require("express"),
 var filterName = "";
 router.get("/", (req, res, next) => {
   blobService.listBlobsSegmented(containerName, null, (err, data) => {
+    const tmp = "index testing v0.0.1";
     let viewData;
 
     if (err) {
@@ -35,19 +36,19 @@ router.get("/", (req, res, next) => {
       }
     }
 
-    if (filterName == "") {
+    if (filterName == "test.STEP") {
       console.log(viewData.thumbnails);
     } else {
-      const tmp = "";
+      var test = [];
       for (var blob of data.entries) {
-        if (blob["name"] == filterName) {
-          // console.log(blob);
-          // console.log("go home");
-          tmp += blob["name "];
-        }
+        // if (blob["name"] == filterName) {
+        test += blob["name"];
+        // console.log("go home");
+        //   // tmp += blob["name "];
+        // }
       }
-      res.send(tmp);
     }
+    res.send(test);
   });
 });
 

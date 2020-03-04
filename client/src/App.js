@@ -30,10 +30,13 @@ class App extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:9000/testApi")
-      .then(res => JSON.stringify(res))
-      .then(res => this.setState({ apiResponse: res }))
-      .catch(err => err);
+    axios
+      .get("http://localhost:9000/")
+      // .then(res => alert(res.data))
+      .then(res => this.setState({ apiResponse: res.data }))
+      .catch(err => {
+        alert(err);
+      });
   }
 
   componentDidMount = async () => {
