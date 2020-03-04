@@ -29,10 +29,11 @@ class App extends Component {
     };
   }
 
+  //TODO: JSON PARSER TO PROPERLY PARSE BLOB OBJECT
+  //CURRENT PLACEHOLDER RETURNS STRING OF ALL BLOB
   callAPI() {
     axios
       .get("http://localhost:9000/")
-      // .then(res => alert(res.data))
       .then(res => this.setState({ apiResponse: res.data }))
       .catch(err => {
         alert(err);
@@ -136,6 +137,8 @@ class App extends Component {
     });
   };
 
+  //UPLOAD FUNCTION
+  //TODO: INTERGRATE UPLOAD FUNCTION WITH BUTTON COMPONENT
   handleFileOnClick = () => {
     const formData = new FormData();
     formData.append("file", this.state.selectedFiles);
