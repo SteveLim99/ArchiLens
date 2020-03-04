@@ -3,6 +3,7 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-router-dom";
 import getWeb3 from "./getWeb3";
+import axios from "axios";
 
 import "./App.css";
 import TextBox from "./components/TextBox.jsx";
@@ -23,19 +24,16 @@ class App extends Component {
       apiResponse: "",
       web3: null,
       accounts: null,
-      contract: null
+      contract: null,
+      selectedFiles: null
     };
   }
 
   callAPI() {
     fetch("http://localhost:9000/testApi")
-      .then(res => res.text())
+      .then(res => JSON.stringify(res))
       .then(res => this.setState({ apiResponse: res }))
       .catch(err => err);
-  }
-
-  componentWillMount() {
-    this.callAPI();
   }
 
   componentDidMount = async () => {
@@ -128,6 +126,26 @@ class App extends Component {
     this.setState({ content: newContent });
   };
 
+  handleFileOnChange = e => {
+    // console.log(e.target.files[0]);
+    this.setState({
+      selectedFiles: e.target.files[0]
+    });
+  };
+
+  handleFileOnClick = () => {
+    const formData = new FormData();
+    formData.append("file", this.state.selectedFiles);
+    axios
+      .post("http://localhost:9000/upload", formData, {})
+      .then(res => {
+        alert(res.statusText);
+      })
+      .catch(e => {
+        alert(e);
+      });
+  };
+
   handleFormSubmit = e => {
     e.preventDefault();
     this.submitForm();
@@ -187,19 +205,18 @@ class App extends Component {
                 handleChange={this.handleContent}
                 placeholder={"File Key Contents and Highlights"}
               />
-              <form
-                id="upload-form"
-                action="/upload"
-                method="POST"
-                enctype="multipart/form-data"
-              >
-                <div class="upload-container">
-                  <input id="file-picker" type="file" name="image"></input>
-                </div>
-              </form>
+              <div class="upload-container">
+                <input
+                  id="file-picker"
+                  type="file"
+                  name="image"
+                  enctype="multipart/form-data"
+                  onChange={this.handleFileOnChange}
+                ></input>
+              </div>
               <div>
                 <Button
-                  action={this.handleFormSubmit}
+                  action={this.handleFileOnClick}
                   class={"btnSubmit"}
                   title={"Submit"}
                 />

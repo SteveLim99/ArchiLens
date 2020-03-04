@@ -38,12 +38,15 @@ router.get("/", (req, res, next) => {
     if (filterName == "") {
       console.log(viewData.thumbnails);
     } else {
+      const tmp = "";
       for (var blob of data.entries) {
         if (blob["name"] == filterName) {
-          console.log(blob);
-          console.log("go home");
+          // console.log(blob);
+          // console.log("go home");
+          tmp += blob["name "];
         }
       }
+      res.send(tmp);
     }
   });
 });
