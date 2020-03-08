@@ -10,6 +10,7 @@ const express = require("express"),
   azureStorage = require("azure-storage"),
   blobService = azureStorage.createBlobService(),
   getStream = require("into-stream"),
+  sha256 = require("js-sha256"),
   containerName = "file-3d";
 const handleError = (err, res) => {
   res.status(500);
@@ -20,7 +21,7 @@ const getBlobName = originalName => {
   const identifier = Math.random()
     .toString()
     .replace(/0\./, ""); // remove "0." from start of string
-  return `${identifier}-${originalName}`;
+  return sha256(`${identifier}-${originalName}`);
 };
 
 router.post("/", uploadStrategy, (req, res) => {
@@ -38,9 +39,7 @@ router.post("/", uploadStrategy, (req, res) => {
         return;
       }
 
-      res.render("success", {
-        message: "nani"
-      });
+      res.send(blobName);
     }
   );
 });
