@@ -25,7 +25,10 @@ class App extends Component {
       web3: null,
       accounts: null,
       contract: null,
-      selectedFiles: null
+      selectedFiles: null,
+      files: [
+        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
+      ]
     };
   }
 
@@ -78,7 +81,7 @@ class App extends Component {
     } else {
       try {
         await contract.methods
-          .set(value, fileName, content)
+          .set("test", this.state.value, this.state.fileName, this.state.content)
           .send({ from: accounts[0] });
         // Update state with the result.
         this.setState({
@@ -150,10 +153,12 @@ class App extends Component {
       .catch(e => {
         alert(e);
       });
+    this.submitForm();
   };
 
   handleFormSubmit = e => {
     e.preventDefault();
+    alert(this.state.fileName);
     this.submitForm();
     this.setState({
       value: "",
@@ -170,6 +175,74 @@ class App extends Component {
       fileName: ""
     });
   };
+
+  handleSearch = async e => {
+    e.preventDefault();
+    var contract = this.state.contract;
+    var version = this.state.getVersion;
+    var fileName = this.state.fileName;
+    alert(version + fileName);
+    this.setState({
+      files: [
+        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
+      ],
+    });
+    try {
+      var indexNo = await contract.methods.getFileIndex(version, fileName).call();
+      console.log(indexNo);
+      alert(indexNo);
+      this.state.files.push({
+        fileNameAndVersion: await contract.methods.getFileNameAndVersion(indexNo).call(),
+        hash: await contract.methods.getHash(indexNo).call(),
+        fileVersion: await contract.methods.getFileVersion(indexNo).call(),
+        fileName: await contract.methods.getFileName(indexNo).call(),
+        fileContent: await contract.methods.getFileContent(indexNo).call()
+    });
+    } catch (error) {
+      console.log("Call: " + error);
+    }
+    this.forceUpdate();
+  };
+
+  handleShowAll = async e => {
+    e.preventDefault();
+    const contract = this.state.contract;
+    this.setState({
+      files: [
+        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
+      ],
+    });
+    try {
+      const noOfFiles = await contract.methods.getLatestFileIndex().call();
+      console.log(noOfFiles);
+      for (let i = 1; i <= noOfFiles; i++) {
+        this.state.files.push({
+            fileNameAndVersion: await contract.methods.getFileNameAndVersion(i).call(),
+            hash: await contract.methods.getHash(i).call(),
+            fileVersion: await contract.methods.getFileVersion(i).call(),
+            fileName: await contract.methods.getFileName(i).call(),
+            fileContent: await contract.methods.getFileContent(i).call()
+        });
+      }
+    } catch (error) {
+      console.log("Call: " + error);
+    }
+    this.forceUpdate();
+  }
+
+  renderTableData() {
+    return this.state.files.map((file, index) => {
+       const { fileNameAndVersion, fileName, fileVersion, fileContent} = file
+       return (
+          <tr key={fileNameAndVersion}>
+             <td>{fileNameAndVersion}</td>
+             <td>{fileName}</td>
+             <td>{fileVersion}</td>
+             <td>{fileContent}</td>
+          </tr>
+       )
+    })
+ }
 
   render() {
     if (!this.state.web3) {
@@ -240,27 +313,21 @@ class App extends Component {
                 <div style={{ marginBottom: "5px" }}>
                   <div style={{ float: "left", width: "30%" }}>
                     <label htmlFor="price-from">File Version</label>
-                    <input
-                      className="form-input"
-                      min="0"
-                      max="10000000"
-                      type="number"
-                      id="price-from"
-                      placeholder="0.0.0"
+                    <input type="text" value={this.state.getVersion} onChange={ e => this.setState({ getVersion : e.target.value }) }
                     />
                   </div>
-                  <div style={{ float: "left", width: "30%" }}>
+                  {/* <div style={{ float: "left", width: "30%" }}>
                     <label htmlFor="postcode">File Type</label>
                     <select className="form-select" id="postcode">
                       <option value="">Choose...</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div style={{ float: "right" }}>
                     <label htmlFor="sortorder">File Name</label>
-                    <input></input>
+                    <input type="text" value={this.state.fileName} onChange={ e => this.setState({ fileName : e.target.value }) }/>
                   </div>
                 </div>
-                <Button
+                {/* <Button
                   action={this.handleFormSubmit}
                   class={"filterBtn"}
                   title={"Filter"}
@@ -269,9 +336,28 @@ class App extends Component {
                   action={this.handleClearForm}
                   class={"searchBtn"}
                   title={"Search"}
-                />
-                <p>here : {this.state.apiResponse}</p>
+                /> */}
+                
+                {/* <p>here : {this.state.apiResponse}</p> */}
               </form>
+              <Button
+                  action={this.handleShowAll}
+                  class={"filterBtn"}
+                  title={"Show All"}
+                />
+                <Button
+                  action={this.handleSearch}
+                  class={"searchBtn"}
+                  title={"Search"}
+                />
+         
+            <h1 id='title'>Table</h1>
+            <table>
+               <tbody>
+                  {this.renderTableData()}
+               </tbody>
+            </table>
+         
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>

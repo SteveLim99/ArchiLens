@@ -133,3 +133,30 @@ body {
 .container {
   padding: 0;
 }
+
+/*==================================================================
+[ Ver1 ]*/
+
+table {
+  width: 100%;
+}
+
+table th {
+  font-family: Lato-Bold;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.4;
+  padding: 10;
+  background-color: #6c7ae0;
+}
+
+table td {
+  font-family: Lato-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.4;
+}
+
+table .table-body tr:nth-child(even) {
+  background-color: #f8f6ff;
+}
