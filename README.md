@@ -21,18 +21,25 @@ In order to run the testing env, you would need:
 - Solidity by Juan Blanco  
   
 # 3 Setting up  
+The code is essentially splitted into 3 parts: The front-end, the back-end and the blockchain portion. To set up we have to install the dependancies found in both the front-end and back-end portion of the code.
+
 3.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3.2.  
 - "truffle migrate --reset --network live"  
 
 3.2 Install HD-Wallet-Provider
 - npm install @truffle/hdwallet-provider
 
-3.3 Install dependancies and packages, channge directory to "client" and launch React App from the same directory.  
+3.3 Install dependancies and packages, channge directory to "api" and launch express server from the same directory.  
+- cd api
+- npm install 
+- npm start
+
+3.4 Install dependancies and packages, channge directory to "client" and launch React App from the same directory.  
 - cd client
 - npm install 
 - npm start
 
-3.4 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
+3.5 React application should be hosted at localhost:3000, more information can be seen in truffle-config.js  
 
 # 4 Unity Application 
 4.1 Install Unity APK 

@@ -72,8 +72,21 @@ class App extends Component {
     }
   };
 
+  //Blockchain submission and file upload
   submitForm = async () => {
     const { accounts, contract, value, fileName, content } = this.state;
+    const formData = new FormData();
+    //The hashedFileName to be used with the upadate contract
+    var hashedFileName = "";
+    formData.append("file", this.state.selectedFiles);
+    axios
+      .post("http://localhost:9000/upload", formData, {})
+      .then(res => {
+        hashedFileName = res.data;
+      })
+      .catch(e => {
+        alert(e);
+      });
 
     // Stores the given value.
     if (fileName === "" || content === "" || value === "") {
@@ -83,12 +96,8 @@ class App extends Component {
         await contract.methods
           .set("test", this.state.value, this.state.fileName, this.state.content)
           .send({ from: accounts[0] });
-        // Update state with the result.
-        this.setState({
-          value: "",
-          content: "",
-          fileName: ""
-        });
+        //File-name hashing output
+        // alert(hashedFileName);
       } catch (error) {
         alert("Submission: " + error);
       }
@@ -142,6 +151,7 @@ class App extends Component {
 
   //UPLOAD FUNCTION
   //TODO: INTERGRATE UPLOAD FUNCTION WITH BUTTON COMPONENT
+  //BEN
   handleFileOnClick = () => {
     const formData = new FormData();
     formData.append("file", this.state.selectedFiles);
@@ -262,7 +272,7 @@ class App extends Component {
 
           <Tab.Content defaultActiveKey="home">
             <Tab.Pane eventKey="home">
-              <h1 className="title"> Create new File </h1>
+              <h1 className="title"> Test platform v 0.1.2 </h1>
               <TextBox
                 inputType={"int"}
                 name={"fileName"}
@@ -295,7 +305,7 @@ class App extends Component {
               </div>
               <div>
                 <Button
-                  action={this.handleFileOnClick}
+                  action={this.handleFormSubmit}
                   class={"btnSubmit"}
                   title={"Submit"}
                 />
@@ -307,7 +317,7 @@ class App extends Component {
               </div>
             </Tab.Pane>
             <Tab.Pane eventKey="profile">
-              <h1 className="title"> Retrieve File </h1>
+              <h1 className="title"> Retrieval Testing TODO: DS.js </h1>
               <form class="form">
                 <p className="mb-1">Refine your results</p>
                 <div style={{ marginBottom: "5px" }}>
