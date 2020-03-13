@@ -69,7 +69,7 @@ class App extends Component {
     }
   };
 
-  //Blockchain submission and file upload
+  //Blockchain submission  and file upload
   submitForm = async () => {
     const { accounts, contract, value, fileName, content } = this.state;
     const formData = new FormData();
