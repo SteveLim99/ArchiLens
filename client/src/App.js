@@ -27,7 +27,13 @@ class App extends Component {
       contract: null,
       selectedFiles: null,
       files: [
-        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
+        {
+          fileNameAndVersion: "fileNameAndVersion",
+          hash: "hash",
+          fileVersion: "fileVersion",
+          fileName: "fileName",
+          fileContent: "fileContent"
+        }
       ]
     };
   }
@@ -94,7 +100,12 @@ class App extends Component {
     } else {
       try {
         await contract.methods
-          .set("test", this.state.value, this.state.fileName, this.state.content)
+          .set(
+            "test",
+            this.state.value,
+            this.state.fileName,
+            this.state.content
+          )
           .send({ from: accounts[0] });
         //File-name hashing output
         // alert(hashedFileName);
@@ -194,20 +205,30 @@ class App extends Component {
     alert(version + fileName);
     this.setState({
       files: [
-        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
-      ],
+        {
+          fileNameAndVersion: "fileNameAndVersion",
+          hash: "hash",
+          fileVersion: "fileVersion",
+          fileName: "fileName",
+          fileContent: "fileContent"
+        }
+      ]
     });
     try {
-      var indexNo = await contract.methods.getFileIndex(version, fileName).call();
+      var indexNo = await contract.methods
+        .getFileIndex(version, fileName)
+        .call();
       console.log(indexNo);
       alert(indexNo);
       this.state.files.push({
-        fileNameAndVersion: await contract.methods.getFileNameAndVersion(indexNo).call(),
+        fileNameAndVersion: await contract.methods
+          .getFileNameAndVersion(indexNo)
+          .call(),
         hash: await contract.methods.getHash(indexNo).call(),
         fileVersion: await contract.methods.getFileVersion(indexNo).call(),
         fileName: await contract.methods.getFileName(indexNo).call(),
         fileContent: await contract.methods.getFileContent(indexNo).call()
-    });
+      });
     } catch (error) {
       console.log("Call: " + error);
     }
@@ -219,40 +240,48 @@ class App extends Component {
     const contract = this.state.contract;
     this.setState({
       files: [
-        { fileNameAndVersion: 'fileNameAndVersion', hash: 'hash', fileVersion: 'fileVersion', fileName: 'fileName', fileContent: 'fileContent' },
-      ],
+        {
+          fileNameAndVersion: "fileNameAndVersion",
+          hash: "hash",
+          fileVersion: "fileVersion",
+          fileName: "fileName",
+          fileContent: "fileContent"
+        }
+      ]
     });
     try {
       const noOfFiles = await contract.methods.getLatestFileIndex().call();
       console.log(noOfFiles);
       for (let i = 1; i <= noOfFiles; i++) {
         this.state.files.push({
-            fileNameAndVersion: await contract.methods.getFileNameAndVersion(i).call(),
-            hash: await contract.methods.getHash(i).call(),
-            fileVersion: await contract.methods.getFileVersion(i).call(),
-            fileName: await contract.methods.getFileName(i).call(),
-            fileContent: await contract.methods.getFileContent(i).call()
+          fileNameAndVersion: await contract.methods
+            .getFileNameAndVersion(i)
+            .call(),
+          hash: await contract.methods.getHash(i).call(),
+          fileVersion: await contract.methods.getFileVersion(i).call(),
+          fileName: await contract.methods.getFileName(i).call(),
+          fileContent: await contract.methods.getFileContent(i).call()
         });
       }
     } catch (error) {
       console.log("Call: " + error);
     }
     this.forceUpdate();
-  }
+  };
 
   renderTableData() {
     return this.state.files.map((file, index) => {
-       const { fileNameAndVersion, fileName, fileVersion, fileContent} = file
-       return (
-          <tr key={fileNameAndVersion}>
-             <td>{fileNameAndVersion}</td>
-             <td>{fileName}</td>
-             <td>{fileVersion}</td>
-             <td>{fileContent}</td>
-          </tr>
-       )
-    })
- }
+      const { fileNameAndVersion, fileName, fileVersion, fileContent } = file;
+      return (
+        <tr key={fileNameAndVersion}>
+          <td>{fileNameAndVersion}</td>
+          <td>{fileName}</td>
+          <td>{fileVersion}</td>
+          <td>{fileContent}</td>
+        </tr>
+      );
+    });
+  }
 
   render() {
     if (!this.state.web3) {
@@ -323,7 +352,12 @@ class App extends Component {
                 <div style={{ marginBottom: "5px" }}>
                   <div style={{ float: "left", width: "30%" }}>
                     <label htmlFor="price-from">File Version</label>
-                    <input type="text" value={this.state.getVersion} onChange={ e => this.setState({ getVersion : e.target.value }) }
+                    <input
+                      type="text"
+                      value={this.state.getVersion}
+                      onChange={e =>
+                        this.setState({ getVersion: e.target.value })
+                      }
                     />
                   </div>
                   {/* <div style={{ float: "left", width: "30%" }}>
@@ -334,7 +368,13 @@ class App extends Component {
                   </div> */}
                   <div style={{ float: "right" }}>
                     <label htmlFor="sortorder">File Name</label>
-                    <input type="text" value={this.state.fileName} onChange={ e => this.setState({ fileName : e.target.value }) }/>
+                    <input
+                      type="text"
+                      value={this.state.fileName}
+                      onChange={e =>
+                        this.setState({ fileName: e.target.value })
+                      }
+                    />
                   </div>
                 </div>
                 {/* <Button
@@ -347,27 +387,24 @@ class App extends Component {
                   class={"searchBtn"}
                   title={"Search"}
                 /> */}
-                
+
                 {/* <p>here : {this.state.apiResponse}</p> */}
               </form>
               <Button
-                  action={this.handleShowAll}
-                  class={"filterBtn"}
-                  title={"Show All"}
-                />
-                <Button
-                  action={this.handleSearch}
-                  class={"searchBtn"}
-                  title={"Search"}
-                />
-         
-            <h1 id='title'>Table</h1>
-            <table>
-               <tbody>
-                  {this.renderTableData()}
-               </tbody>
-            </table>
-         
+                action={this.handleShowAll}
+                class={"filterBtn"}
+                title={"Show All"}
+              />
+              <Button
+                action={this.handleSearch}
+                class={"searchBtn"}
+                title={"Search"}
+              />
+
+              <h1 id="title">Table</h1>
+              <table>
+                <tbody>{this.renderTableData()}</tbody>
+              </table>
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
