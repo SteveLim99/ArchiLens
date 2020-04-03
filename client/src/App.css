@@ -1,162 +1,38 @@
-/* .App {
-  margin-left: auto;
-  border-radius: 25px;
-  margin-right: auto;
-  width: 50%;
-  background-color: burlywood;
-  padding: 100px;
-} */
-
-body {
-  background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
-}
-
-.file-submit {
-  border: grey;
-  background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-}
-
-.upload-container {
-  margin-bottom: 10px;
-}
-
-.contact-form {
-  background: #fff;
-  margin: 0 auto;
-  width: 800px;
-  padding: 5%;
-}
-
-.contact-form .nav-tabs {
-  margin-bottom: 1%;
-  background: #0062cc;
-  border-radius: 1rem;
-}
-.contact-form .nav-link {
-  padding: 1%;
-  height: 34px;
-  font-weight: 600;
-  color: #fff;
-  border: none;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-}
-
-.contact-form .nav-tabs .nav-link.active {
-  color: #0062cc;
-  border: 2px solid #0062cc;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-}
-
-.title {
+.App {
   text-align: center;
-  color: #0062cc;
 }
 
-.contact-form .form-control {
-  border-radius: 1rem;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.contact-form .form-control-speshiul {
-  border-radius: 10px;
-  margin-bottom: 10px;
-  width: 70%;
-  float: left;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.contact-form .row {
-  flex: 0.9;
-  flex-direction: row;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  display: inline-block;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.contact-form .btnClear {
-  width: 50%;
-  border: none;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  padding: 1.5%;
-  background: #dc3545;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
+.App-link {
+  color: #61dafb;
 }
 
-.contact-form .btnSubmit {
-  width: 50%;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  padding: 1.5%;
-  color: #fff;
-  background-color: #0062cc;
-  border: none;
-  cursor: pointer;
-}
-
-.filterBtn {
-  width: 10%;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  color: #fff;
-  background-color: #0062cc;
-  border: none;
-  cursor: pointer;
-}
-
-.searchBtn {
-  width: 10%;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  background: #dc3545;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.form {
-  padding: 30px;
-  background-color: #f7f8f9;
-  border-radius: 0.2rem;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.container {
-  padding: 0;
-}
-
-/*==================================================================
-[ Ver1 ]*/
-
-table {
-  width: 100%;
-}
-
-table th {
-  font-family: Lato-Bold;
-  font-size: 18px;
-  color: #fff;
-  line-height: 1.4;
-  padding: 10;
-  background-color: #6c7ae0;
-}
-
-table td {
-  font-family: Lato-Regular;
-  font-size: 15px;
-  color: #808080;
-  line-height: 1.4;
-}
-
-table .table-body tr:nth-child(even) {
-  background-color: #f8f6ff;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
