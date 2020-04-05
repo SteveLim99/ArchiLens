@@ -12,15 +12,15 @@
   1. git clone the repository.
   2.The code is essentially splitted into 4 parts:
   
-    -`The React front-end` 
-    -`The back-end`  
-    -`The blockchain`
-    -`The Unity front-end`
+    - `The React front-end` 
+    - `The back-end`  
+    - `The blockchain`
+    - `The Unity front-end`
 
   2.1 If Migration.json and simpleStorage.json not found in client/src/contracts, re-run truffle, otherwise jump to 3. There are 3 networks we can deploy our contracts to. You can add your own networks in truffle-config.js.
-    -`live - the Ropsten Test Network`
-    -`azure - the Azure Blockchain Service`
-    -`develop - our local blockchain hosted through Ganache`
+    - `live - the Ropsten Test Network`
+    - `azure - the Azure Blockchain Service`
+    - `develop - our local blockchain hosted through Ganache`
   
   2.2 We deploy the contract through truffle, at the root directory.
   
