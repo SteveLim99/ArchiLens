@@ -1,70 +1,47 @@
-# GOSH-FHIRworks2020-FHIRDataVisualization
+# UCL_Avanade_Blockchain_AR_Concept
 
-## 1. Setting up
+## 1. Technologies Required
 
-- **Windows**
+  1. Ensure that node.js and npm is installed.
+  2. Metamask Extension on your browser
+  3. Solidity extension on VS code
+  4. Truffle
 
-  1. Ensure that Python 3.7 or above is installed.
-  2. pip install virtualenv
-  3. virtualenv env
-  4. pip install -r .\requirements.txt
-  5. \$env:FLASK_ENV = "development"
-  6. \$env:FLASK_APP = "app.py"
+## 2. Setting up
 
-- **Linux**
+  1. git clone the repository.
+  2. At the root directory.
+  
+     - `npm install`
+     
+  3. cd into api folder and npm install
+  
+     - `cd api`
+     - `npm install`
+  
+  4. cd into client folder and npm install
+  
+     - `cd ../client`
+     - `npm install`
 
-  1. Ensure that Python 3.7 or above is installed.
-  2. Install virtualenv and setup virtualenv
+## 2. Starting the Nodejs Backend
 
-     - `pip install virtualenv`
-     - `virtualenv env`
-     - `source env/bin/activate`
+  - In the api directory 
+    - `npm start`
 
-  3. Install packages
+## 3. Starting the React Frontend
 
-     - `pip install flask`
-     - `pip install FHIR-Parser`
+  - In the client directory 
+    - `npm start`
+    
+## 4. Nodejs Backend Endpoints
 
-  4. Setup Flask environment
-     - `source env/bin/activate`
-     - `export FLASK_ENV=development`
-     - ``export FLASK_APP=app.py`
+- `/` -- Homepage, gets list of all the blobs currentony on the Azure Blob Storage.
+- `/upload` -- Hashes files and upload them to the Azure Blob Storage, server should respond with the file download URL link.
 
-## 2. Starting the FHIR WebApp
+## 5. React Frontend Functionalities
 
-1. Clone the repo from [GOSH-FHIRworks2020](https://github.com/greenfrogs/FHIRworks_2020) and follow the deployment guide found on the repo. Ensure that the dotnet backend is running before you continue from this step.
+The dashboard can be used to display a list of datas stored on the blockchain, (name, version, content and the download url link for the attached file). There is also a search bar that allows users to search through the document list on the homepage to find for a specific document on the blockchain.
 
-2. Launching the FHIR Webapp
+Clicking on the upload tab will allow users to upload data onto the blockchain. Upon upload, the form first goes through two validation checks, then the file will first be uploaded, the blockchain upload will wait for a response from the server before it continues its upload to the blockchain.
 
-- **Windows**
-  - `.\env\Scripts\activate`
-  - `flask run --port=2000`
-- **Linux**
-  - `.\env\Scripts\activate`
-  - `flask run --port=2000`
-
-## 3. API Endpoints
-
-**Demographic Groups**
-
-- GET demographic groups found in FHIR and returned as a dictionary such groups includes { 'age': {}, 'marital': {}, 'gender': {}, 'location':{}, 'race':{}, 'language':{}}: `/demographics`
-
-**Patient's Observations Data**
-
-- GET observations returns the patient observation data across the timescale, descriptions and key data of the latest observations: `/patientObs/patient ID`
-
-## 4. FHIR WebApp Funtionalities
-
-![img](gifs/preview.gif)
-
-The dashboard can be used to display a list of patients, their observational data(latest observation uuid, date of observation, status, weight, bmi, systolic blood pressure) and more specific credentials such as (uuid, patient id, gender, address, birth date) along with a few graphs to allow users to properly visualize data across a time scale.
-
-Clicking on the FHIR Demographics button will display a few graphs that shows the different demographical groups found on the FHIR database. Such groups includes the age group, location group, languages group etc.
-
-There is also a search bar that allows users to search through the patient list on the homepage to find for a specific patient through the patient's name.
-
-Routes
-
-- `/` -- Homepage, also the list of patients
-- `/patientObs/<patient id>` -- Patient's detailed credentials and observational data
-- `/demographics` -- Data on the different demographical groups on the FHIR database
