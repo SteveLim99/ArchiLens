@@ -3,7 +3,7 @@
 ## 1. Technologies Required
 
   1. Ensure that node.js and npm is installed.
-  2. Install [a relative link](https://metamask.io/)Metamask Extension on your browser.  
+  2. Install [Metamask Extension](https://metamask.io/) on your browser.  
   3. Solidity extension on VS code
   
     - solidity by Juan Blanco
