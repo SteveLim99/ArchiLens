@@ -3,9 +3,17 @@
 ## 1. Technologies Required
 
   1. Ensure that node.js and npm is installed.
-  2. Metamask Extension on your browser
+  2. Install Metamask Extension on your browser
+  
+    - [a link](https://metamask.io/)
+  
   3. Solidity extension on VS code
+  
+    - solidity by Juan Blanco
+  
   4. Truffle
+  
+    - npm install -g truffle
 
 ## 2. Setting up
 
@@ -37,25 +45,32 @@
   
   5. cd into client folder and npm install
   
-     - `cd ../client`
-     - `npm install`
+     - cd ../client
+     - npm install
+     
+## 2. Setting up the Metamask Network
 
-## 2. Starting the Nodejs Backend
+     - Open the Metamask Browser Extension.
+     - Select networks on the top right corner.
+     - Change the network to the network your contract is deployed to.
+     - If your network is not on the list, select the custom rpc option and add your network.
+
+## 3. Starting the Nodejs Backend
 
   - In the api directory 
     - `npm start`
 
-## 3. Starting the React Frontend
+## 4. Starting the React Frontend
 
   - In the client directory 
     - `npm start`
     
-## 4. Nodejs Backend Endpoints
+## 5. Nodejs Backend Endpoints
 
 - `/` -- Homepage, gets list of all the blobs currentony on the Azure Blob Storage.
 - `/upload` -- Hashes files and upload them to the Azure Blob Storage, server should respond with the file download URL link.
 
-## 5. React Frontend Functionalities
+## 6. React Frontend Functionalities
 
 The dashboard can be used to display a list of datas stored on the blockchain, (name, version, content and the download url link for the attached file). There is also a search bar that allows users to search through the document list on the homepage to find for a specific document on the blockchain.
 
