@@ -8,10 +8,8 @@ const express = require("express"),
   blobService = azureStorage.createBlobService(),
   containerName = "file-3d",
   config = require("../config");
-var filterName = "";
 router.get("/", (req, res, next) => {
   blobService.listBlobsSegmented(containerName, null, (err, data) => {
-    const tmp = "index testing v0.0.1";
     let viewData;
 
     if (err) {
@@ -35,20 +33,8 @@ router.get("/", (req, res, next) => {
         viewData.thumbnails = data.entries;
       }
     }
-
-    if (filterName == "test.STEP") {
-      console.log(viewData.thumbnails);
-    } else {
-      var test = [];
-      for (var blob of data.entries) {
-        // if (blob["name"] == filterName) {
-        test += blob["name"];
-        // console.log("go home");
-        //   // tmp += blob["name "];
-        // }
-      }
-    }
-    res.send(test);
+    console.log(viewData);
+    res.send(viewData);
   });
 });
 
