@@ -1,6 +1,6 @@
 This project was bootstrapped with [Truffle Create React App](https://www.trufflesuite.com/boxes/truffle-create-react-app).
 
-# ArchiLens: A Blockchain for the Architecture Industry Concept 
+# ArchiLens: A Blockchain Platform for the Architecture Industry Concept 
 
 ## 1. Technologies Required
 
