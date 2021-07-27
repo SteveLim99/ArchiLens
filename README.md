@@ -1,6 +1,6 @@
 This project was bootstrapped with [Truffle Create React App](https://www.trufflesuite.com/boxes/truffle-create-react-app).
 
-# UCL_Avanade_Blockchain_AR_Concept
+# ArchiLens: A Blockchain for the Architecture Industry Concept 
 
 ## 1. Technologies Required
 
